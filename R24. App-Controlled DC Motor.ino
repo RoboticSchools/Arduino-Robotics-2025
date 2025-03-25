@@ -1,7 +1,7 @@
 /*
 Components Used:
 - Arduino Board
-- Motor Shield
+- Adafruit Motor Shield
 - DC Motor
 - Bluetooth Module (HC-05 or HC-06)
 - Potentiometer (A5 for Speed Control)
