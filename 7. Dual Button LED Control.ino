@@ -8,9 +8,9 @@ Components Used:
 - Jumper Wires
 */
 
-const int buttonOnPin = 7;  // Button 1 to turn LED ON
-const int buttonOffPin = 6; // Button 2 to turn LED OFF
-const int ledPin = 8;       // LED connected to Pin 8
+int buttonOnPin = 7;  // Button 1 to turn LED ON
+int buttonOffPin = 6; // Button 2 to turn LED OFF
+int ledPin = 8;       // LED connected to Pin 8
 
 void setup() {
   pinMode(buttonOnPin, INPUT_PULLUP);  // Set Button 1 as input with internal pull-up resistor
