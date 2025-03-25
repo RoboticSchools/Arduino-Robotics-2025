@@ -1,7 +1,6 @@
 /*
 Components Used:
 - Arduino Board
-- Sensor Shield
 - Adafruit Motor Shield
 - DC Motor
 - Potentiometer (A5)
