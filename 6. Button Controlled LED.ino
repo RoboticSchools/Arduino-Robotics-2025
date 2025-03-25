@@ -17,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(buttonPin) == 1) {  // Check if button is pressed (Active LOW)
+  if (digitalRead(buttonPin) == 0) {  // Check if button is pressed (Active LOW)
     digitalWrite(ledPin, HIGH);         // Turn on LED
   } else {
     digitalWrite(ledPin, LOW);          // Turn off LED
