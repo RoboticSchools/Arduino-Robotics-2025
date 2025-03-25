@@ -25,13 +25,13 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(buttonOn) == LOW) {
+  if (digitalRead(buttonOn) == 0) {
     motor.run(FORWARD);  // Run motor forward
   } 
-  else if (digitalRead(buttonOff) == LOW) {
+  else if (digitalRead(buttonOff) == 0) {
     motor.run(RELEASE);  // Stop motor
   } 
-  else if (digitalRead(buttonRev) == LOW) {
+  else if (digitalRead(buttonRev) == 0) {
     motor.run(BACKWARD);  // Run motor in reverse
   }
 }
