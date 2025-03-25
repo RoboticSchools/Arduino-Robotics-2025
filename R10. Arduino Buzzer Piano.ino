@@ -8,13 +8,13 @@ Components Used:
 - Jumper Wires
 */
 
-const int buzzerPin = 9; // Buzzer connected to Pin 9
+int buzzerPin = 9; // Buzzer connected to Pin 9
 
-const int button1 = 4; // Button 1 (C)
-const int button2 = 5; // Button 2 (D)
-const int button3 = 6; // Button 3 (E)
-const int button4 = 7; // Button 4 (F)
-const int button5 = 8; // Button 5 (G)
+int button1 = 4; // Button 1 (C)
+int button2 = 5; // Button 2 (D)
+int button3 = 6; // Button 3 (E)
+int button4 = 7; // Button 4 (F)
+int button5 = 8; // Button 5 (G)
 
 void setup() {
   pinMode(buzzerPin, OUTPUT); // Set buzzer pin as output
