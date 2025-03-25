@@ -7,9 +7,11 @@ Components Used:
 - Jumper Wires
 */
 
+int ledPin = 7; // LED connected to Pin 7
+
 void setup() {
-  pinMode(7, OUTPUT);  // Set LED pin as output
-  Serial.begin(9600);   // Start serial communication
+  pinMode(ledPin, OUTPUT); // Set LED pin as output
+  Serial.begin(9600);      // Start serial communication
 }
 
 void loop() {
@@ -17,11 +19,11 @@ void loop() {
     char input = Serial.read();  // Read the input character
 
     if (input == '1') {          
-      digitalWrite(7, HIGH);    // Turn on LED (Pin 13)
+      digitalWrite(ledPin, HIGH); // Turn on LED
       Serial.println("LED ON");
     } 
     else if (input == '0') {     
-      digitalWrite(7, LOW);     // Turn off LED (Pin 13)
+      digitalWrite(ledPin, LOW);  // Turn off LED
       Serial.println("LED OFF");
     }
   }
