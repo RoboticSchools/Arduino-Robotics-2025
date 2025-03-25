@@ -8,8 +8,8 @@ Components Used:
 - Jumper Wires
 */
 
-const int buttonPin = 7; // Button connected to Pin 7
-const int ledPin = 8;    // LED connected to Pin 8
+int buttonPin = 7; // Button connected to Pin 7
+int ledPin = 8;    // LED connected to Pin 8
 
 void setup() {
   pinMode(buttonPin, INPUT_PULLUP); // Set Button pin as input with internal pull-up resistor
