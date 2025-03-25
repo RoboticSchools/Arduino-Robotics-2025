@@ -11,7 +11,7 @@ Components Used:
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(2, 3); // RX, TX
 
-int ledPin = 8;      // LED connected to Pin 8
+int ledPin = 9; // LED connected to PWM Pin 9
 
 void setup() {
   pinMode(ledPin, OUTPUT); // Set LED pin as output
@@ -23,10 +23,13 @@ void loop() {
     int command = BTSerial.parseInt(); // Read the received integer
 
     if (command == 1) {
-      digitalWrite(ledPin, HIGH); // Turn LED ON
+      analogWrite(ledPin, 255); // Turn LED ON (Full Brightness)
     } 
     else if (command == 0) {
-      digitalWrite(ledPin, LOW);  // Turn LED OFF
+      analogWrite(ledPin, 0);  // Turn LED OFF
+    } 
+    else if (command >= 2 && command <= 255) { 
+      analogWrite(ledPin, command); // Adjust LED brightness (2-255)
     }
   }
 }
