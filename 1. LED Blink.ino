@@ -1,7 +1,6 @@
 /*
 Components Used:
 - Arduino Board
-- Sensor Shield
 - LED  
 - Breadboard
 - Jumper Wires
