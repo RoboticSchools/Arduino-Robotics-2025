@@ -8,8 +8,8 @@ Components Used:
 - Jumper Wires
 */
 
-const int buttonPin = 7; // Button connected to Pin 7
-const int ledPin = 8;    // LED connected to Pin 8
+int buttonPin = 7; // Button connected to Pin 7
+int ledPin = 8;    // LED connected to Pin 8
 
 bool ledState = false; // LED state
 
