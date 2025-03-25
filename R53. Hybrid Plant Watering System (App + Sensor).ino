@@ -1,4 +1,5 @@
 /*
+Components used:
 - Arduino Board
 - Adafruit Motor Shield
 - Water pump
