@@ -1,4 +1,10 @@
-
+/*
+- Arduino Board
+- Adafruit Motor Shield
+- Water pump
+- Soil moisture sensor
+- Bluetooth HC05
+*/
 
 #include <AFMotor.h>
 #include <SoftwareSerial.h>
