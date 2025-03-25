@@ -1,6 +1,7 @@
 /*
 Components used:
 - Arduino Board
+- Sensor Shield
 - DHT11 Temperature and Humidity Sensor
 - LCD Display (16x2 with I2C)
 */
