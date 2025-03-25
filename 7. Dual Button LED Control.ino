@@ -2,7 +2,7 @@
 Components Used:
 - Arduino Board
 - Sensor Shield
-- 2 Push Button
+- 2 Push Buttons
 - LED
 - Breadboard
 - Jumper Wires
