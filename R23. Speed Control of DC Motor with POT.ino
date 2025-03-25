@@ -15,9 +15,9 @@ Components Used:
 AF_DCMotor motor(1);  // Motor connected to M1 on the shield
 
 int potPin = A5;      // Potentiometer connected to A5
-int forwardButton = 2; // Forward button
-int reverseButton = 3; // Reverse button
-int stopButton = 4;    // Stop button
+int forwardButton = A0; // Forward button
+int reverseButton = A1; // Reverse button
+int stopButton = A2;    // Stop button
 
 void setup() {
   pinMode(forwardButton, INPUT_PULLUP);
@@ -32,15 +32,15 @@ void loop() {
   int potValue = analogRead(potPin);      // Read potentiometer value (0-1023)
   int motorSpeed = map(potValue, 0, 1023, 0, 255); // Convert to motor speed (0-255)
 
-  if (digitalRead(forwardButton) == LOW) {
+  if (digitalRead(forwardButton) == 0) {
     motor.setSpeed(motorSpeed); // Set motor speed
     motor.run(FORWARD);         // Run motor forward
   } 
-  else if (digitalRead(reverseButton) == LOW) {
+  else if (digitalRead(reverseButton) == 0) {
     motor.setSpeed(motorSpeed); // Set motor speed
     motor.run(BACKWARD);        // Run motor in reverse
   } 
-  else if (digitalRead(stopButton) == LOW) {
+  else if (digitalRead(stopButton) == 0) {
     motor.setSpeed(0);  // Stop motor
     motor.run(RELEASE);
   }
