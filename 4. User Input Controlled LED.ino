@@ -8,7 +8,7 @@ Components Used:
 */
 
 void setup() {
-  pinMode(13, OUTPUT);  // Set LED pin as output
+  pinMode(7, OUTPUT);  // Set LED pin as output
   Serial.begin(9600);   // Start serial communication
 }
 
@@ -17,11 +17,11 @@ void loop() {
     char input = Serial.read();  // Read the input character
 
     if (input == '1') {          
-      digitalWrite(13, HIGH);    // Turn on LED (Pin 13)
+      digitalWrite(7, HIGH);    // Turn on LED (Pin 13)
       Serial.println("LED ON");
     } 
     else if (input == '0') {     
-      digitalWrite(13, LOW);     // Turn off LED (Pin 13)
+      digitalWrite(7, LOW);     // Turn off LED (Pin 13)
       Serial.println("LED OFF");
     }
   }
