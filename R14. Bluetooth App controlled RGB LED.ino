@@ -11,9 +11,9 @@ Components Used:
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(2, 3); // RX, TX
 
-const int redPin = 4;   // Red LED pin
-const int greenPin = 5; // Green LED pin
-const int bluePin = 6;  // Blue LED pin
+int redPin = 4;   // Red LED pin
+int greenPin = 5; // Green LED pin
+int bluePin = 6;  // Blue LED pin
 
 void setup() {
   pinMode(redPin, OUTPUT);
