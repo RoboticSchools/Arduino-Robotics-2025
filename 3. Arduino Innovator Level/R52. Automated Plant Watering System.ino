@@ -1,3 +1,13 @@
+/*
+Components Used:
+- Arduino Board
+- Motor Shield
+- Soil Moisture Sensor
+- Water Pump
+- Breadboard
+- Jumper Wires
+*/
+
 #include <AFMotor.h>
 
 // Motor shield pin for water pump
@@ -5,9 +15,6 @@ AF_DCMotor pump(1);
 
 // Soil moisture sensor pin
 int moisturePin = A0;  
-
-// Moisture threshold for watering
-int threshold = 500;
 
 void setup() {
   pinMode(moisturePin, INPUT);  // Soil moisture sensor input
@@ -20,10 +27,10 @@ void loop() {
   Serial.print("Soil Moisture: ");
   Serial.println(moistureValue);
 
-  if (moistureValue < threshold) {
+  if (moistureValue < 500) {
     pump.run(FORWARD);  // Turn on pump if soil is dry
-    delay(3000);         // Pump for 3 seconds
-    pump.run(RELEASE);   // Stop pump
+    delay(3000);        // Pump for 3 seconds
+    pump.run(RELEASE);  // Stop pump
   }
 
   delay(5000);  // Wait before checking again
