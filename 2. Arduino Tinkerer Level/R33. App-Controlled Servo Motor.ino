@@ -3,9 +3,7 @@ Components Used:
 - Arduino Board
 - Sensor Shield
 - Servo Motor
-- Bluetooth Module (HC-05 or HC-06)
-  - TX to Arduino Pin 2
-  - RX to Arduino Pin 3 (with voltage divider if needed)
+- Bluetooth Module (HC-05)
 - Breadboard
 - Jumper Wires
 */
