@@ -15,7 +15,7 @@ Components Used:
 Servo fanServo;  // Create a Servo object
 int servoPin = 9;  // Servo connected to Pin 9
 
-AF_DCMotor fanMotor(3); // DC Motor connected to M3 on Motor Shield
+AF_DCMotor fanMotor(1); // DC Motor connected to M1 on Motor Shield
 
 // Button pins
 int buttonOn = A0;     // DC Motor ON button
@@ -34,16 +34,16 @@ void setup() {
 
 void loop() {
   // DC Motor Control
-  if (digitalRead(buttonOn) == LOW) {
+  if (digitalRead(buttonOn) == 0) {
     fanMotor.setSpeed(255);  // Set speed to max (0-255)
     fanMotor.run(FORWARD);   // Turn DC Motor ON
-  } 
-  if (digitalRead(buttonOff) == LOW) {
+  }
+  if (digitalRead(buttonOff) == 0) {
     fanMotor.run(RELEASE);   // Turn DC Motor OFF
   }
 
   // Toggle Servo Rotation on Button Press
-  if (digitalRead(buttonServo) == LOW) {
+  if (digitalRead(buttonServo) == 0) {
     delay(200); // Debounce delay
     while (digitalRead(buttonServo) == LOW); // Wait for button release
     servoRunning = !servoRunning; // Toggle servo state
