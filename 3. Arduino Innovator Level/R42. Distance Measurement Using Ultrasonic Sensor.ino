@@ -17,9 +17,6 @@ void setup() {
 }
 
 void loop() {
-  long duration;
-  float distance;
-
   // Send a 10µs pulse to trigger the sensor
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
@@ -28,14 +25,14 @@ void loop() {
   digitalWrite(TRIG_PIN, LOW);
 
   // Read the echo pin
-  duration = pulseIn(ECHO_PIN, HIGH);
+  long duration = pulseIn(ECHO_PIN, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
-  distance = (duration * 0.0343) / 2; // Distance in cm
+  int distance = (duration * 0.0343) / 2; // Distance in cm
 
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" cm");
 
-  delay(500); // Update every 500ms
+  delay(100); // Update every 500ms
 }
