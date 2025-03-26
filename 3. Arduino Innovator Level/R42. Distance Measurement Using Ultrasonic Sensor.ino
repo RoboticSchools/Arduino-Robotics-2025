@@ -7,8 +7,8 @@ Components Used:
 - Jumper Wires
 */
 
-int trigPin = 9;  // Trigger pin of HC-SR04 (Connected to D9 on Sensor Shield)
-int echoPin = 10; // Echo pin of HC-SR04 (Connected to D10 on Sensor Shield)
+int trigPin = 9;  // Trigger pin of HC-SR04
+int echoPin = 10; // Echo pin of HC-SR04
 
 void setup() {
   Serial.begin(9600);    // Start serial communication
@@ -34,5 +34,5 @@ void loop() {
   Serial.print(distance);
   Serial.println(" cm");
 
-  delay(100); // Update every 500ms
+  delay(100); // Update every 100ms
 }
