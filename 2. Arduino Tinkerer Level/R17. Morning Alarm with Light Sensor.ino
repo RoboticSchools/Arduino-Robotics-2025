@@ -23,11 +23,11 @@ void loop() {
   int ldrState = digitalRead(ldrPin); // Read LDR value
   int buttonState = digitalRead(buttonPin); // Read Button state
 
-  if (ldrState == HIGH) {  // If light is detected (Morning)
+  if (ldrState == 1) {  // If light is detected (Morning)
     digitalWrite(buzzerPin, HIGH); // Turn ON Buzzer (Alarm)
   }
 
-  if (buttonState == LOW) {  // If button is pressed
+  if (buttonState == 0) {  // If button is pressed
     digitalWrite(buzzerPin, LOW); // Turn OFF Buzzer (Stop Alarm)
   }
 }
