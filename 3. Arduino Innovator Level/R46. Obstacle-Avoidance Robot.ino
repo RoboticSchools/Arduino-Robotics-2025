@@ -10,26 +10,26 @@ Components Used:
 
 #include <AFMotor.h>
 
-#define TRIG_PIN A4     // Trigger pin of HC-SR04 (Connected to A4)
-#define ECHO_PIN A5     // Echo pin of HC-SR04 (Connected to A5)
+int trigPin = A4;  // Trigger pin of HC-SR04 (Connected to A4)
+int echoPin = A5;  // Echo pin of HC-SR04 (Connected to A5)
 
 // Motor shield motor objects
-AF_DCMotor right_Front(1);  // Right Front Motor (M1)
-AF_DCMotor right_Back(2);   // Right Back Motor (M2)
-AF_DCMotor left_Front(3);   // Left Front Motor (M3)
-AF_DCMotor left_Back(4);    // Left Back Motor (M4)
+AF_DCMotor rightFront(1);  // Right Front Motor (M1)
+AF_DCMotor rightBack(2);   // Right Back Motor (M2)
+AF_DCMotor leftFront(3);   // Left Front Motor (M3)
+AF_DCMotor leftBack(4);    // Left Back Motor (M4)
 
 void setup() {
   Serial.begin(9600);  // Start serial communication
 
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
   
   // Initialize all motors to forward movement
-  right_Front.setSpeed(150);  
-  right_Back.setSpeed(150);
-  left_Front.setSpeed(150);   
-  left_Back.setSpeed(150);  
+  rightFront.setSpeed(150);  
+  rightBack.setSpeed(150);
+  leftFront.setSpeed(150);   
+  leftBack.setSpeed(150);  
 }
 
 void loop() {
@@ -37,14 +37,14 @@ void loop() {
   float distance;
 
   // Send a 10µs pulse to trigger the sensor
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
+  digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
 
   // Read the echo pin
-  duration = pulseIn(ECHO_PIN, HIGH);
+  duration = pulseIn(echoPin, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
   distance = (duration * 0.0343) / 2;  // Distance in cm
@@ -65,17 +65,17 @@ void loop() {
 }
 
 void moveForward() {
-  right_Front.run(FORWARD);
-  right_Back.run(FORWARD);
-  left_Front.run(FORWARD);
-  left_Back.run(FORWARD);
+  rightFront.run(FORWARD);
+  rightBack.run(FORWARD);
+  leftFront.run(FORWARD);
+  leftBack.run(FORWARD);
 }
 
 void moveBackwards() {
-  right_Front.run(BACKWARD);
-  right_Back.run(BACKWARD);
-  left_Front.run(BACKWARD);
-  left_Back.run(BACKWARD);
+  rightFront.run(BACKWARD);
+  rightBack.run(BACKWARD);
+  leftFront.run(BACKWARD);
+  leftBack.run(BACKWARD);
   
   delay(500);  // Move backwards for 0.5 seconds
   
@@ -83,10 +83,10 @@ void moveBackwards() {
 }
 
 void turnRight() {
-  right_Front.run(FORWARD);
-  right_Back.run(FORWARD);
-  left_Front.run(BACKWARD);
-  left_Back.run(BACKWARD);
+  rightFront.run(FORWARD);
+  rightBack.run(FORWARD);
+  leftFront.run(BACKWARD);
+  leftBack.run(BACKWARD);
   
   delay(500);  // Turn right for 0.5 seconds
   
@@ -94,8 +94,8 @@ void turnRight() {
 }
 
 void stopMotors() {
-  right_Front.run(RELEASE);  // Stop right front motor
-  right_Back.run(RELEASE);   // Stop right back motor
-  left_Front.run(RELEASE);   // Stop left front motor
-  left_Back.run(RELEASE);    // Stop left back motor
+  rightFront.run(RELEASE);  // Stop right front motor
+  rightBack.run(RELEASE);   // Stop right back motor
+  leftFront.run(RELEASE);   // Stop left front motor
+  leftBack.run(RELEASE);    // Stop left back motor
 }
