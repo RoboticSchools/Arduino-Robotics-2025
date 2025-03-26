@@ -1,5 +1,5 @@
 /*
-Components used:
+Components Used:
 - Arduino Board
 - Sensor Shield
 - IR Receiver Module
@@ -10,17 +10,17 @@ Components used:
 
 #include <IRremote.h>
 
-#define IR_RECEIVE_PIN 8  // IR receiver connected to Sensor Shield
-#define LED_PIN 6         // LED connected to Sensor Shield
+int irReceivePin = 8;  // IR receiver connected to Sensor Shield
+int ledPin = 6;        // LED connected to Sensor Shield
 
 // IR remote button codes
-#define IR_BUTTON_ON 12
-#define IR_BUTTON_OFF 24
+int irButtonOn = 12;
+int irButtonOff = 24;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(LED_PIN, OUTPUT);  // Set LED pin as output
-  IrReceiver.begin(IR_RECEIVE_PIN);  // Start IR receiver
+  pinMode(ledPin, OUTPUT);  // Set LED pin as output
+  IrReceiver.begin(irReceivePin);  // Start IR receiver
 }
 
 void loop() {
@@ -29,13 +29,13 @@ void loop() {
     Serial.println(command);
     IrReceiver.resume();  // Continue receiving IR signals
 
-    if (command == IR_BUTTON_ON) {
+    if (command == irButtonOn) {
       Serial.println("LED ON");
-      digitalWrite(LED_PIN, HIGH);  // Turn LED on
+      digitalWrite(ledPin, HIGH);  // Turn LED on
     } 
-    else if (command == IR_BUTTON_OFF) {
+    else if (command == irButtonOff) {
       Serial.println("LED OFF");
-      digitalWrite(LED_PIN, LOW);   // Turn LED off
+      digitalWrite(ledPin, LOW);   // Turn LED off
     } 
     else {
       Serial.println("Button not recognized");
