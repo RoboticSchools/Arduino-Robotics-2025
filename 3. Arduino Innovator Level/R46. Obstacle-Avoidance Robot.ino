@@ -33,9 +33,6 @@ void setup() {
 }
 
 void loop() {
-  long duration;
-  float distance;
-
   // Send a 10µs pulse to trigger the sensor
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -44,10 +41,10 @@ void loop() {
   digitalWrite(trigPin, LOW);
 
   // Read the echo pin
-  duration = pulseIn(echoPin, HIGH);
+  long duration = pulseIn(echoPin, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
-  distance = (duration * 0.0343) / 2;  // Distance in cm
+  int distance = (duration * 0.0343) / 2;  // Distance in cm
 
   Serial.print("Distance: ");
   Serial.print(distance);
@@ -56,7 +53,13 @@ void loop() {
   // If the object is closer than 30 cm, avoid obstacle
   if (distance < 30) {
     moveBackwards();  // Move backwards for 0.5 seconds
+    delay(500);  // Move backwards for 0.5 seconds
+    stopMotors();  // Stop after moving backwards
+    delay(100); 
     turnRight();      // Always turn right when an obstacle is detected
+    delay(500);  // Turn right for 0.5 seconds
+    stopMotors();  // Stop after turning
+    delay(100);
   } else {
     moveForward();    // Move forward if no obstacle
   }
@@ -76,10 +79,6 @@ void moveBackwards() {
   rightBack.run(BACKWARD);
   leftFront.run(BACKWARD);
   leftBack.run(BACKWARD);
-  
-  delay(500);  // Move backwards for 0.5 seconds
-  
-  stopMotors();  // Stop after moving backwards
 }
 
 void turnRight() {
@@ -87,15 +86,11 @@ void turnRight() {
   rightBack.run(FORWARD);
   leftFront.run(BACKWARD);
   leftBack.run(BACKWARD);
-  
-  delay(500);  // Turn right for 0.5 seconds
-  
-  stopMotors();  // Stop after turning
 }
 
 void stopMotors() {
-  rightFront.run(RELEASE);  // Stop right front motor
-  rightBack.run(RELEASE);   // Stop right back motor
-  leftFront.run(RELEASE);   // Stop left front motor
-  leftBack.run(RELEASE);    // Stop left back motor
+  rightFront.run(RELEASE);  
+  rightBack.run(RELEASE); 
+  leftFront.run(RELEASE); 
+  leftBack.run(RELEASE); 
 }
