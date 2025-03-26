@@ -3,7 +3,7 @@ Components Used:
 - Arduino Board
 - Sensor Shield
 - RGB LED (Common Cathode)
-- Bluetooth Module (HC-05 or HC-06)
+- Bluetooth Module (HC-05)
 - Breadboard
 - Jumper Wires
 */

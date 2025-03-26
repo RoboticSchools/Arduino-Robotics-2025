@@ -8,10 +8,10 @@ Components Used:
 - Jumper Wires
 */
 
-int buttonPin = 7;  // Button connected to Pin 7
 int redPin = 4;     // Red LED pin
 int greenPin = 5;   // Green LED pin
 int bluePin = 6;    // Blue LED pin
+int buttonPin = 7;  // Button connected to Pin 7
 
 void setup() {
   pinMode(buttonPin, INPUT_PULLUP); // Set button as input with internal pull-up resistor

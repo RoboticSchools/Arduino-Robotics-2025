@@ -26,19 +26,19 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(button1) == LOW) {
+  if (digitalRead(button1) == 0) {
     tone(buzzerPin, 262, 200); // C note
   } 
-  else if (digitalRead(button2) == LOW) {
+  else if (digitalRead(button2) == 0) {
     tone(buzzerPin, 294, 200); // D note
   } 
-  else if (digitalRead(button3) == LOW) {
+  else if (digitalRead(button3) == 0) {
     tone(buzzerPin, 330, 200); // E note
   } 
-  else if (digitalRead(button4) == LOW) {
+  else if (digitalRead(button4) == 0) {
     tone(buzzerPin, 349, 200); // F note
   } 
-  else if (digitalRead(button5) == LOW) {
+  else if (digitalRead(button5) == 0) {
     tone(buzzerPin, 392, 200); // G note
   } 
   else {

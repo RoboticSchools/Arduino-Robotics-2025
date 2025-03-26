@@ -3,7 +3,7 @@ Components Used:
 - Arduino Board
 - Sensor Shield
 - LED
-- Bluetooth Module (HC-05 or HC-06)
+- Bluetooth Module (HC-05)
 - Breadboard
 - Jumper Wires
 */
@@ -23,10 +23,10 @@ void loop() {
     int command = BTSerial.parseInt(); // Read the received integer
 
     if (command == 1) {
-      analogWrite(ledPin, 255); // Turn LED ON (Full Brightness)
+      digitalWrite(ledPin, HIGH); // Turn LED ON (Full Brightness)
     } 
     else if (command == 0) {
-      analogWrite(ledPin, 0);  // Turn LED OFF
+      digitalWrite(ledPin, LOW);  // Turn LED OFF
     } 
     else if (command >= 2 && command <= 255) { 
       analogWrite(ledPin, command); // Adjust LED brightness (2-255)

@@ -8,8 +8,8 @@ Components Used:
 - Jumper Wires
 */
 
-int buttonOnPin = 7;  // Button 1 to turn LED ON
-int buttonOffPin = 6; // Button 2 to turn LED OFF
+int buttonOnPin = 6;  // Button 1 to turn LED ON
+int buttonOffPin = 7; // Button 2 to turn LED OFF
 int ledPin = 8;       // LED connected to Pin 8
 
 void setup() {
