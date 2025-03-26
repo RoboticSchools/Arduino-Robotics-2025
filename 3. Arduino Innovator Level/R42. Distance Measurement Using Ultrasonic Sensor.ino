@@ -11,21 +11,21 @@ int trigPin = 9;  // Trigger pin of HC-SR04
 int echoPin = 10; // Echo pin of HC-SR04
 
 void setup() {
-  Serial.begin(9600);    // Start serial communication
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+  Serial.begin(9600);   // Start serial communication
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 }
 
 void loop() {
   // Send a 10µs pulse to trigger the sensor
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
+  digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
 
   // Read the echo pin
-  long duration = pulseIn(ECHO_PIN, HIGH);
+  long duration = pulseIn(echoPin, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
   int distance = (duration * 0.0343) / 2; // Distance in cm
