@@ -27,7 +27,7 @@ void loop() {
   int sensorValue = digitalRead(irSensorPin);  // Read the IR sensor's value
 
   // If object is detected (sensor value is LOW, as most IR sensors give LOW output when detecting)
-  if (sensorValue == LOW) {
+  if (sensorValue == 0) {
     Serial.println("Object Detected - Opening Door");
     doorServo.write(90);  // Open the door (90 degrees)
   } else {
