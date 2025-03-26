@@ -3,12 +3,11 @@ Components Used:
 - Arduino Board
 - Sensor Shield
 - LCD 16x2 with I2C Module
-- Bluetooth Module (HC-05 or HC-06) or Serial Monitor
+- Bluetooth Module (HC-05)
 - Breadboard
 - Jumper Wires
 */
 
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address (0x27 or 0x3F), 16 columns, 2 rows
