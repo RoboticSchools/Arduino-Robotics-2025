@@ -29,19 +29,19 @@ void loop() {
   int motionState = digitalRead(pirPin);   // Read PIR sensor value
   int buttonState = digitalRead(buttonPin); // Read Button state
 
-  if (motionState == HIGH) {  // If motion is detected (Intruder Alert)
+  if (motionState == 1) {  // If motion is detected (Intruder Alert)
     digitalWrite(greenLed, LOW);   // Turn OFF Green LED
     digitalWrite(redLed, HIGH);    // Turn ON Red LED
     digitalWrite(buzzerPin, HIGH); // Turn ON Buzzer (Alarm)
   }
 
-  if (buttonState == LOW) {  // If button is pressed (Stop Alarm)
+  if (buttonState == 0) {  // If button is pressed (Stop Alarm)
     digitalWrite(buzzerPin, LOW);  // Turn OFF Buzzer
     digitalWrite(redLed, LOW);     // Turn OFF Red LED
     digitalWrite(greenLed, HIGH);  // Turn ON Green LED (Safe Mode)
   }
 
-  if (motionState == LOW) {  // No motion detected (Safe Mode)
+  if (motionState == 0) {  // No motion detected (Safe Mode)
     digitalWrite(greenLed, HIGH);  // Turn ON Green LED
   }
 }
