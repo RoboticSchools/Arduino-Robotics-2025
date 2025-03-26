@@ -33,6 +33,31 @@ void setup() {
 }
 
 void loop() {
+  int distance = getUltrasonicDistance(); // Get distance from ultrasonic sensor
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // If the object is closer than 30 cm, avoid obstacle
+  if (distance < 30) {
+    moveBackwards();  
+    delay(500);  
+    stopMotors();  
+    delay(100); 
+    turnRight();      
+    delay(500);  
+    stopMotors();  
+    delay(100);
+  } else {
+    moveForward();    
+  }
+
+  delay(100);  // Short delay before next check
+}
+
+// Function to get the distance from the ultrasonic sensor
+int getUltrasonicDistance() {
   // Send a 10µs pulse to trigger the sensor
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -44,27 +69,7 @@ void loop() {
   long duration = pulseIn(echoPin, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
-  int distance = (duration * 0.0343) / 2;  // Distance in cm
-
-  Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" cm");
-
-  // If the object is closer than 30 cm, avoid obstacle
-  if (distance < 30) {
-    moveBackwards();  // Move backwards for 0.5 seconds
-    delay(500);  // Move backwards for 0.5 seconds
-    stopMotors();  // Stop after moving backwards
-    delay(100); 
-    turnRight();      // Always turn right when an obstacle is detected
-    delay(500);  // Turn right for 0.5 seconds
-    stopMotors();  // Stop after turning
-    delay(100);
-  } else {
-    moveForward();    // Move forward if no obstacle
-  }
-
-  delay(100);  // Short delay before next check
+  return (duration * 0.0343) / 2;  // Distance in cm
 }
 
 void moveForward() {
