@@ -26,6 +26,7 @@ void setup() {
 void loop() {
   if (IrReceiver.decode()) {
     int command = IrReceiver.decodedIRData.command;
+    Serial.println(command);
     IrReceiver.resume();  // Continue receiving IR signals
 
     if (command == IR_BUTTON_ON) {
