@@ -3,8 +3,8 @@ Components Used:
 - Arduino Board
 - Adafruit Motor Shield
 - DC Motor
-- Bluetooth Module (HC-05 or HC-06)
-- Potentiometer (A5 for Speed Control)
+- Bluetooth Module (HC-05)
+- Potentiometer
 - Breadboard
 - Jumper Wires
 */
@@ -34,8 +34,6 @@ void loop() {
     }
   }
 
-  // Read speed from potentiometer and map it to 0-255 range
   int speedValue = analogRead(potPin);
-  speedValue = map(speedValue, 0, 1023, 0, 255);
-  motor.setSpeed(speedValue); // Adjust motor speed
+  motor.setSpeed(speedValue);
 }
