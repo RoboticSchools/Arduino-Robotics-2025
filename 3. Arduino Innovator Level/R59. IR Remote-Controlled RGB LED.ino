@@ -37,6 +37,7 @@ void loop() {
   // Check if IR signal is received
   if (IrReceiver.decode()) {
     int command = IrReceiver.decodedIRData.command; // Store the received command
+    Serial.println(command);
     IrReceiver.resume();  // Prepare IR receiver for next signal
 
     // Check which button was pressed and control the RGB LED accordingly
