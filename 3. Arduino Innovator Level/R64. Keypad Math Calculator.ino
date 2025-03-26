@@ -1,14 +1,4 @@
-/*
-Components used:
-- Arduino Board
-- Sensor Shield
-- 4x4 Keypad
-- LCD Display (I2C)
-- Jumper Wires
-*/
-
 #include <Keypad.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
 // Define LCD address and size
@@ -36,15 +26,12 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 // Variables for calculations
 String input = "";
 char operation;
-float num1 = 0, num2 = 0;
-bool isNewInput = true;
+int num1 = 0, num2 = 0;
 
 void setup() {
-  lcd.begin(16, 2);   // Initialize LCD
+  lcd.init();   // Initialize LCD
   lcd.backlight();    // Turn on backlight
   lcd.setCursor(0, 0);
-  lcd.print("Calculator Ready");
-  delay(2000);
   lcd.clear();
 }
 
@@ -54,23 +41,19 @@ void loop() {
   if (key) {
     if (key >= '0' && key <= '9') {
       // Store numbers
+      lcd.print(key);
       input += key;
-      lcd.setCursor(0, 1);
-      lcd.print(input);
     } 
     else if (key == '+' || key == '-' || key == '*' || key == '/') {
       // Store first number and operation
-      num1 = input.toFloat();
+      num1 = input.toInt();
       operation = key;
       input = "";
-      lcd.setCursor(0, 0);
-      lcd.print(num1);
-      lcd.print(" ");
       lcd.print(operation);
     } 
     else if (key == '=') {
       // Store second number and perform calculation
-      num2 = input.toFloat();
+      num2 = input.toInt();
       float result = 0;
       
       if (operation == '+') result = num1 + num2;
@@ -78,19 +61,11 @@ void loop() {
       else if (operation == '*') result = num1 * num2;
       else if (operation == '/' && num2 != 0) result = num1 / num2;
 
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print(num1);
-      lcd.print(" ");
-      lcd.print(operation);
-      lcd.print(" ");
-      lcd.print(num2);
       lcd.setCursor(0, 1);
       lcd.print("= ");
       lcd.print(result);
       
       input = "";
-      isNewInput = true;
       delay(3000);
       lcd.clear();
     } 
