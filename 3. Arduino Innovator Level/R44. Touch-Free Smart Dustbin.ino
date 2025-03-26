@@ -8,9 +8,9 @@ Components Used:
 - Jumper Wires
 */
 
-#define TRIG_PIN 9     // Trigger pin of HC-SR04 (Connected to D9 on Sensor Shield)
-#define ECHO_PIN 10    // Echo pin of HC-SR04 (Connected to D10 on Sensor Shield)
-#define SERVO_PIN 3    // Servo Motor pin (Connected to D3 on Sensor Shield)
+int trigPin = 9;     // Trigger pin of HC-SR04
+int echoPin = 10;    // Echo pin of HC-SR04
+int servoPin = 3;    // Servo Motor pin
 
 #include <Servo.h>
 
