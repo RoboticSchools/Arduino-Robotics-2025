@@ -7,7 +7,6 @@ Components Used:
 - Jumper Wires
 */
 
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address (0x27 or 0x3F), 16 columns, 2 rows
