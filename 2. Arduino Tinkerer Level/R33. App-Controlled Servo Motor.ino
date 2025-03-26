@@ -17,7 +17,6 @@ SoftwareSerial BTSerial(2, 3); // RX, TX
 Servo myServo; 
 
 int servoPin = 9; // Servo connected to pin 9
-int angle;        // Variable to store servo angle
 
 void setup() {
   myServo.attach(servoPin); // Attach servo to pin
@@ -26,10 +25,7 @@ void setup() {
 
 void loop() {
   if (BTSerial.available()) { // If data is received from the app
-    int command = BTSerial.parseInt(); // Read the received integer
-
-    // Map received value (0-100) to servo angle (0-180)
-    angle = map(command, 0, 100, 0, 180);
+    int angle = BTSerial.parseInt(); // Read the received integer
     myServo.write(angle); // Move servo to mapped angle
   }
 }
