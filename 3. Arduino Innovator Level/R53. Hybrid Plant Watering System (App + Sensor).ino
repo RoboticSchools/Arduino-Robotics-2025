@@ -17,10 +17,7 @@ AF_DCMotor pump(1);
 int moisturePin = A0;
 
 // Bluetooth communication pins
-SoftwareSerial BTSerial(10, 11);  // RX, TX for Bluetooth module
-
-// Moisture threshold for watering
-int threshold = 500;
+SoftwareSerial BTSerial(9, 10);  // RX, TX for Bluetooth module
 
 // Variables for reading sensor and controlling pump
 int moistureValue = 0;
@@ -55,7 +52,7 @@ void loop() {
   }
 
   // Automatic watering based on soil moisture
-  if (moistureValue < threshold) {
+  if (moistureValue < 500) {
     pump.run(FORWARD);  // Turn on pump if soil is dry
     delay(3000);         // Pump for 3 seconds
     pump.run(RELEASE);   // Stop pump
