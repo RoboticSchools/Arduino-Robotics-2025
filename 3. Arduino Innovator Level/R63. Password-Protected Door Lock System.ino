@@ -9,7 +9,6 @@ Components used:
 */
 
 #include <Keypad.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
@@ -28,67 +27,70 @@ char keys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-// Define keypad row and column pins (connected to sensor shield)
+// Define keypad row and column pins
 byte rowPins[ROWS] = {9, 8, 7, 6};
 byte colPins[COLS] = {5, 4, 3, 2};
 
-// Initialize the Keypad
+// Initialize keypad
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 // Servo motor for locking mechanism
 Servo doorLock;
-int servoPin = 10; // Servo connected to pin 10
+int servoPin = 10;
 
-// Password settings
-String password = "1234"; // Set password
-String inputPassword = ""; // Store entered password
+// Password variables
+String password = "1234";
+String inputPassword = "";
 
 void setup() {
-  lcd.begin(16, 2);   // Initialize LCD
-  lcd.backlight();    // Turn on backlight
+  lcd.init();
+  lcd.backlight();
   lcd.setCursor(0, 0);
   lcd.print("Enter Password:");
 
-  doorLock.attach(servoPin); // Attach servo motor
+  doorLock.attach(servoPin);
   doorLock.write(0); // Lock position
 }
 
 void loop() {
-  char key = keypad.getKey(); // Read key press
+  char key = keypad.getKey();
 
   if (key) {
-    if (key == '#') {
-      // Check password when '#' is pressed
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      
-      if (inputPassword == password) {
-        lcd.print("Access Granted");
-        doorLock.write(90); // Unlock door
-        delay(3000);
-        doorLock.write(0); // Lock again
-      } else {
-        lcd.print("Access Denied");
-      }
-
-      inputPassword = ""; // Reset input
-      delay(2000);
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Enter Password:");
-    } 
-    else if (key == '*') {
-      // Clear input when '*' is pressed
-      inputPassword = "";
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Enter Password:");
-    } 
-    else {
-      // Store entered key
+    // 1. Add key to input and show on LCD
+    if (key != '#' && key != '*') {
       inputPassword += key;
       lcd.setCursor(0, 1);
       lcd.print(inputPassword);
     }
+
+    // 2. Submit password
+    else if (key == '#') {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+
+      if (inputPassword == password) {
+        lcd.print("Access Granted");
+        doorLock.write(90); // Unlock
+        delay(3000);
+        doorLock.write(0);  // Lock again
+      } else {
+        lcd.print("Access Denied");
+      }
+
+      inputPassword = ""; // Reset
+      delay(2000);
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Enter Password:");
+    }
+
+    // 3. Clear input
+    else if (key == '*') {
+      inputPassword = "";
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Enter Password:");
+    }
   }
 }
+
