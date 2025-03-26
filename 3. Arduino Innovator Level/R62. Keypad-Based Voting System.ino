@@ -7,9 +7,9 @@ Components used:
 - Jumper Wires
 */
 
-#include <Keypad.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+
+#include <Keypad.h>
 
 // Define LCD address and size
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -34,13 +34,28 @@ byte colPins[COLS] = {5, 4, 3, 2};
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 // Voting counters
-int voteA = 0, voteB = 0, voteC = 0;
+int voteA = 0, voteB = 0, voteC = 0, voteD = 0; 
 
 void setup() {
-  lcd.begin(16, 2);   // Initialize LCD
+  lcd.init();   // Initialize LCD
   lcd.backlight();    // Turn on backlight
+  
   lcd.setCursor(0, 0);
-  lcd.print("Vote: 1-A 2-B 3-C");
+  lcd.print("Get Ready");
+  lcd.setCursor(0, 1);
+  lcd.print("to Vote!");
+  delay(2000);
+  lcd.clear();
+  
+  introVote();
+}
+
+void introVote()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("Vote A    Vote B");
+  lcd.setCursor(0, 1);
+  lcd.print("Vote C    Vote D");
 }
 
 void loop() {
@@ -51,36 +66,53 @@ void loop() {
     lcd.setCursor(0, 0);
 
     // Record votes based on key press
-    if (key == '1') {
+    if (key == 'A') {
       voteA++;
-      lcd.print("Vote A: ");
-      lcd.print(voteA);
+      lcd.print("Voted A");
     } 
-    else if (key == '2') {
+    else if (key == 'B') {
       voteB++;
-      lcd.print("Vote B: ");
-      lcd.print(voteB);
+      lcd.print("Voted B");
     } 
-    else if (key == '3') {
+    else if (key == 'C') {
       voteC++;
-      lcd.print("Vote C: ");
-      lcd.print(voteC);
-    } 
+      lcd.print("Voted C");
+    }
+    else if (key == 'D') {
+      voteD++;
+      lcd.print("Voted D");
+    }
+    
     else if (key == '#') {
       lcd.clear();
       lcd.setCursor(0, 0);
-      lcd.print("A:");
-      lcd.print(voteA);
-      lcd.print(" B:");
-      lcd.print(voteB);
+      lcd.print("A : " + String(voteA) + "    B : " + String(voteB));
       lcd.setCursor(0, 1);
-      lcd.print("C:");
-      lcd.print(voteC);
+      lcd.print("C : " + String(voteC) + "    D : " + String(voteD));
+      
+      delay(3000); 
+      
+      // Find max vote using max()
+      int maxVote = max(max(voteA, voteB), max(voteC, voteD));
+
+      // Check who all have the max vote
+      String winner = "";
+
+      if (voteA == maxVote) winner += "A ";
+      if (voteB == maxVote) winner += "B ";
+      if (voteC == maxVote) winner += "C ";
+      if (voteD == maxVote) winner += "D ";
+
+      // Display winner(s)
+      lcd.clear();
+      lcd.print("Winner(s) : " + winner);
+
+      while (1); // Halt
     }
 
-    delay(1000); // Delay for display
+    delay(3000); // Delay for display
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Vote: 1-A 2-B 3-C");
+    introVote();
   }
 }
