@@ -13,6 +13,7 @@ int potPin = A0;         // Potentiometer connected to Analog Pin A0
 
 void setup() {
   pinMode(ledPin, OUTPUT);  // Set LED pin as output
+  pinMode(potPin, INPUT);   // Set Potentiometer pin as input
 }
 
 void loop() {
