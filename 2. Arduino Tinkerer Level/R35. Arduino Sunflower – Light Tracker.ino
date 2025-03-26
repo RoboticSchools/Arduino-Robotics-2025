@@ -27,14 +27,14 @@ void setup() {
 }
 
 void loop() {
-  int rightLight = digitalRead(rightSensor); // Read right LDR sensor (1 = light detected)
-  int leftLight = digitalRead(leftSensor);   // Read left LDR sensor (1 = light detected)
+  int rightLDR = digitalRead(rightSensor); // Read right LDR sensor
+  int leftLDR = digitalRead(leftSensor);   // Read left LDR sensor
 
-  if (rightLight == HIGH && leftLight == LOW && servoAngle < 180) {  
+  if (rightLDR == 1 && leftLDR == 0 && servoAngle < 180) {  
     // Move right if right sensor detects more light
     servoAngle++;
   } 
-  else if (leftLight == HIGH && rightLight == LOW && servoAngle > 0) {  
+  else if (leftLDR == 1 && rightLDR == 0 && servoAngle > 0) {  
     // Move left if left sensor detects more light
     servoAngle--;
   }
