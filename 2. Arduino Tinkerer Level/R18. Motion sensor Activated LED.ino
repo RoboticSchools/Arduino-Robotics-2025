@@ -19,7 +19,7 @@ void setup() {
 void loop() {
   int motionState = digitalRead(pirPin); // Read PIR sensor value
 
-  if (motionState == HIGH) {  // If motion is detected
+  if (motionState == 1) {  // If motion is detected
     digitalWrite(ledPin, HIGH); // Turn ON LED
   } else {  // If no motion
     digitalWrite(ledPin, LOW);  // Turn OFF LED
