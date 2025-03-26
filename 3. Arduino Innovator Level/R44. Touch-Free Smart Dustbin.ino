@@ -18,10 +18,10 @@ Servo dustbinServo;  // Create a Servo object for controlling the dustbin lid
 
 void setup() {
   Serial.begin(9600);   // Start serial communication
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
   
-  dustbinServo.attach(SERVO_PIN);  // Attach the servo motor to the servo pin
+  dustbinServo.attach(servoPin);  // Attach the servo motor to the servo pin
   dustbinServo.write(0);   // Close the lid initially
 }
 
@@ -30,14 +30,14 @@ void loop() {
   float distance;
 
   // Send a 10µs pulse to trigger the sensor
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
+  digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(trigPin, LOW);
 
   // Read the echo pin
-  duration = pulseIn(ECHO_PIN, HIGH);
+  duration = pulseIn(echoPin, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
   distance = (duration * 0.0343) / 2;  // Distance in cm
@@ -53,5 +53,5 @@ void loop() {
     dustbinServo.write(0);    // Close the lid (0 degrees)
   }
 
-  delay(500);  // Update every 500ms
+  delay(100);  // Update every 100ms
 }
