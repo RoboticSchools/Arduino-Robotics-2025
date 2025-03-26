@@ -3,7 +3,6 @@ Components Used:
 - Arduino Board
 - Sensor Shield
 - LCD 16x2 with I2C Module
-- Breadboard
 - Jumper Wires
 */
 
