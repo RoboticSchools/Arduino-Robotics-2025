@@ -10,11 +10,11 @@ Components Used:
 - Jumper Wires
 */
 
-#define TRIG_PIN 9     // Trigger pin of HC-SR04 (Connected to D9 on Sensor Shield)
-#define ECHO_PIN 10    // Echo pin of HC-SR04 (Connected to D10 on Sensor Shield)
-#define RED_LED_PIN 3  // Red LED pin (Connected to D3 on Sensor Shield)
-#define GREEN_LED_PIN 4 // Green LED pin (Connected to D4 on Sensor Shield)
-#define BUZZER_PIN 5   // Buzzer pin (Connected to D5 on Sensor Shield)
+int trigPin = 9;      // Trigger pin of HC-SR04
+int echoPin = 10;     // Echo pin of HC-SR04
+int redLedPin = 3;    // Red LED pin
+int greenLedPin = 4;  // Green LED pin
+int buzzerPin = 5;    // Buzzer pin
 
 void setup() {
   Serial.begin(9600);     // Start serial communication
@@ -26,8 +26,6 @@ void setup() {
 }
 
 void loop() {
-  long duration;
-  float distance;
 
   // Send a 10µs pulse to trigger the sensor
   digitalWrite(TRIG_PIN, LOW);
@@ -37,10 +35,10 @@ void loop() {
   digitalWrite(TRIG_PIN, LOW);
 
   // Read the echo pin
-  duration = pulseIn(ECHO_PIN, HIGH);
+  long duration = pulseIn(ECHO_PIN, HIGH);
 
   // Convert time to distance (Speed of sound = 343 m/s)
-  distance = (duration * 0.0343) / 2;  // Distance in cm
+  int distance = (duration * 0.0343) / 2;  // Distance in cm
 
   Serial.print("Distance: ");
   Serial.print(distance);
@@ -59,5 +57,5 @@ void loop() {
     digitalWrite(BUZZER_PIN, LOW);
   }
 
-  delay(500);  // Update every 500ms
+  delay(100);  // Update every 100ms
 }
