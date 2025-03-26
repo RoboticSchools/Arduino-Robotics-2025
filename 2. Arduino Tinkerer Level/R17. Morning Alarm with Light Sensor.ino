@@ -29,5 +29,6 @@ void loop() {
 
   if (buttonState == 0) {  // If button is pressed
     digitalWrite(buzzerPin, LOW); // Turn OFF Buzzer (Stop Alarm)
+    while(1);
   }
 }
