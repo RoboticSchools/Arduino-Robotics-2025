@@ -21,16 +21,23 @@ void setup() {
   pinMode(buttonOff, INPUT_PULLUP);
   pinMode(buttonRev, INPUT_PULLUP);
   motor.setSpeed(255);  // Set maximum speed (0-255)
+
+  Serial.begin(9600);   // Start Serial Monitor
 }
 
 void loop() {
   if (digitalRead(buttonOn) == 0) {
     motor.run(FORWARD);  // Run motor forward
+    Serial.println("Motor Running FORWARD");
   } 
   else if (digitalRead(buttonOff) == 0) {
     motor.run(RELEASE);  // Stop motor
+    Serial.println("Motor STOPPED");
   } 
   else if (digitalRead(buttonRev) == 0) {
     motor.run(BACKWARD);  // Run motor in reverse
+    Serial.println("Motor Running BACKWARD");
   }
+  
+  delay(200); // Small delay to avoid excessive serial output
 }
