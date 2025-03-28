@@ -19,15 +19,13 @@ void setup() {
 
 void loop() {
   int ldrState = digitalRead(ldrPin); // Read LDR value
-  Serial.print("LDR State: ");
-  Serial.print(ldrState);
 
   if (ldrState == 1) {  // If it's dark
     digitalWrite(ledPin, HIGH); // Turn on the LED (Street Light)
-    Serial.println(" | Dark Detected - LED ON");
+    Serial.println("Dark Detected - LED ON");
   } else {  // If there's light
     digitalWrite(ledPin, LOW);  // Turn off the LED
-    Serial.println(" | Light Detected - LED OFF");
+    Serial.println("Light Detected - LED OFF");
   }
 
   delay(100); // Small delay for readability
