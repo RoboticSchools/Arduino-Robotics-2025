@@ -20,7 +20,7 @@ void setup() {
 
 void loop() {
   if (BTSerial.available()) { // If data is received from the app
-    int command = BTSerial.parseInt(); // Read the received integer
+    int command = BTSerial.read(); // Read the received integer
 
     if (command == 1) {
       digitalWrite(ledPin, HIGH); // Turn LED ON (Full Brightness)
