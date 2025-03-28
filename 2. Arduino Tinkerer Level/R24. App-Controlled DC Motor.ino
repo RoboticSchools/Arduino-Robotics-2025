@@ -16,8 +16,11 @@ SoftwareSerial BTSerial(2, 3); // RX, TX for Bluetooth communication
 AF_DCMotor motor(1);  // Motor connected to M1 on Motor Shield
 int potPin = A5;      // Potentiometer pin
 
+// Default speed variable
+int speedValue = 150;
+
 void setup() {
-  motor.setSpeed(150);  // Initialize motor speed to 150
+  motor.setSpeed(speedValue);  // Initialize motor speed to 150
   motor.run(RELEASE);   // Ensure motor is stopped
   
   BTSerial.begin(9600); // Start Bluetooth communication
@@ -37,10 +40,10 @@ void loop() {
       Serial.println("Motor STOPPED");
     }
     else if (command >= 2 && command <= 255) { // If command is speed value
-      int motorSpeed = command;
-      motor.setSpeed(motorSpeed);
+      speedValue = command;
+      motor.setSpeed(speedValue);
       Serial.print("Motor Speed Set To: ");
-      Serial.println(motorSpeed);
+      Serial.println(speedValue);
     }
   }
 }

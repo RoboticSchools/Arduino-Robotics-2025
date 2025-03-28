@@ -34,21 +34,21 @@ void loop() {
   int rightValue = digitalRead(rightSensor);
   int leftValue = digitalRead(leftSensor);
 
-  if (leftValue == HIGH && rightValue == HIGH) {
+  if (leftValue == 0 && rightValue == 0) {
     // Move Forward
     right_Front.run(FORWARD);
     right_Back.run(FORWARD);
     left_Front.run(FORWARD);
     left_Back.run(FORWARD);
   } 
-  else if (leftValue == HIGH && rightValue == LOW) {
+  else if (leftValue == 0 && rightValue == 1) {
     // Turn Left
     right_Front.run(FORWARD);
     right_Back.run(FORWARD);
     left_Front.run(BACKWARD);
     left_Back.run(BACKWARD);
   } 
-  else if (leftValue == LOW && rightValue == HIGH) {
+  else if (leftValue == 1 && rightValue == 0) {
     // Turn Right
     right_Front.run(BACKWARD);
     right_Back.run(BACKWARD);

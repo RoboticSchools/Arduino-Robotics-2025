@@ -33,7 +33,7 @@ void setup() {
 
 void loop() {
   if (BTSerial.available()) {
-    int command = BTSerial.parseInt(); // Read the received integer
+    int command = BTSerial.read(); // Read the received integer
 
     if (command == 1) {
       // Move Forward
