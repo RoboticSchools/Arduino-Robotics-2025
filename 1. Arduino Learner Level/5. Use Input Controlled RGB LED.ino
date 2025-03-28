@@ -7,62 +7,62 @@ Components Used:
 - Jumper Wires
 */
 
-int redPin = 4;   // Red pin connected to Pin 4
-int greenPin = 5; // Green pin connected to Pin 5
-int bluePin = 6;  // Blue pin connected to Pin 6
+// Define RGB LED pins
+int redPin = 4;    // Red pin connected to digital pin 4
+int greenPin = 5;  // Green pin connected to digital pin 5
+int bluePin = 6;   // Blue pin connected to digital pin 6
 
 void setup() {
-  pinMode(redPin, OUTPUT);   // Set Red pin as output
-  pinMode(greenPin, OUTPUT); // Set Green pin as output
-  pinMode(bluePin, OUTPUT);  // Set Blue pin as output
-  Serial.begin(9600);        // Start serial communication
+  // Configure RGB LED pins as output
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+  
+  // Initialize serial communication at 9600 baud rate
+  Serial.begin(9600);
 }
 
 void loop() {
-  if (Serial.available() > 0) {  // Check if data is received
-    char input = Serial.read();  // Read the input character
+  // Check if data is available in the serial buffer
+  if (Serial.available() > 0) {  
+    char input = Serial.read();  // Read the received character
 
-    // Turn off all LEDs first
-    digitalWrite(redPin, LOW);
-    digitalWrite(greenPin, LOW);
-    digitalWrite(bluePin, LOW);
-
-    // Check input and turn on corresponding color
+    // Control RGB LED based on received input character
     if (input == 'R' || input == 'r') {
-      digitalWrite(redPin, HIGH);  // Red
+      digitalWrite(redPin, HIGH);  // Turn on Red LED
+      digitalWrite(greenPin, LOW);
+      digitalWrite(bluePin, LOW);
       Serial.println("Red ON");
-    } 
-    else if (input == 'G' || input == 'g') {
-      digitalWrite(greenPin, HIGH);  // Green
+    } else if (input == 'G' || input == 'g') {
+      digitalWrite(redPin, LOW);
+      digitalWrite(greenPin, HIGH);  // Turn on Green LED
+      digitalWrite(bluePin, LOW);
       Serial.println("Green ON");
-    } 
-    else if (input == 'B' || input == 'b') {
-      digitalWrite(bluePin, HIGH);  // Blue
+    } else if (input == 'B' || input == 'b') {
+      digitalWrite(redPin, LOW);
+      digitalWrite(greenPin, LOW);
+      digitalWrite(bluePin, HIGH);  // Turn on Blue LED
       Serial.println("Blue ON");
-    } 
-    else if (input == 'Y' || input == 'y') {
-      digitalWrite(redPin, HIGH);  // Yellow (Red + Green)
-      digitalWrite(greenPin, HIGH);
+    } else if (input == 'Y' || input == 'y') {
+      digitalWrite(redPin, HIGH);
+      digitalWrite(greenPin, HIGH);  // Turn on Yellow (Red + Green)
+      digitalWrite(bluePin, LOW);
       Serial.println("Yellow ON");
-    } 
-    else if (input == 'C' || input == 'c') {
-      digitalWrite(greenPin, HIGH);  // Cyan (Green + Blue)
+    } else if (input == 'C' || input == 'c') {
+      digitalWrite(redPin, LOW);
+      digitalWrite(greenPin, HIGH);  // Turn on Cyan (Green + Blue)
       digitalWrite(bluePin, HIGH);
       Serial.println("Cyan ON");
-    } 
-    else if (input == 'M' || input == 'm') {
-      digitalWrite(redPin, HIGH);  // Magenta (Red + Blue)
+    } else if (input == 'M' || input == 'm') {
+      digitalWrite(redPin, HIGH);  // Turn on Magenta (Red + Blue)
+      digitalWrite(greenPin, LOW);
       digitalWrite(bluePin, HIGH);
       Serial.println("Magenta ON");
-    } 
-    else if (input == 'W' || input == 'w') {
-      digitalWrite(redPin, HIGH);  // White (Red + Green + Blue)
+    } else if (input == 'W' || input == 'w') {
+      digitalWrite(redPin, HIGH);  // Turn on White (Red + Green + Blue)
       digitalWrite(greenPin, HIGH);
       digitalWrite(bluePin, HIGH);
       Serial.println("White ON");
-    } 
-    else {
-      Serial.println("Invalid Input! Use R, G, B, Y, C, M, W.");
     }
   }
 }
