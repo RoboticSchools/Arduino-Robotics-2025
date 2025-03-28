@@ -7,27 +7,29 @@ Components Used:
 - Jumper Wires
 */
 
+int xPin = A0;  // Joystick X-axis connected to Analog Pin A0
+int yPin = A1;  // Joystick Y-axis connected to Analog Pin A1
+int buttonPin = 2; // Joystick button connected to Digital Pin 2
+
 void setup() {
-  pinMode(2, INPUT_PULLUP);  // Joystick button pin on sensor shield
-  Serial.begin(9600);  // Start serial communication
+  pinMode(xPin, INPUT);  // Set X-axis pin as input
+  pinMode(yPin, INPUT);  // Set Y-axis pin as input
+  pinMode(buttonPin, INPUT_PULLUP);  // Enable internal pull-up resistor for button
+  Serial.begin(9600);  // Initialize serial communication
 }
 
 void loop() {
-  int xPin = A0;  // Joystick X-axis pin
-  int yPin = A1;  // Joystick Y-axis pin
-  int buttonPin = 2; // Joystick button pin on sensor shield
+  int xValue = analogRead(xPin);  // Read joystick X-axis (0-1023)
+  int yValue = analogRead(yPin);  // Read joystick Y-axis (0-1023)
+  int buttonState = digitalRead(buttonPin);  // Read button state (0 = pressed, 1 = not pressed)
 
-  int xValue = analogRead(xPin);  // Read the X-axis value (0-1023)
-  int yValue = analogRead(yPin);  // Read the Y-axis value (0-1023)
-  int buttonState = digitalRead(buttonPin);  // Read the button state (pressed or not)
-
-  // Print X, Y values and button state to Serial Monitor
+  // Print joystick values and button state to Serial Monitor
   Serial.print("X: ");
   Serial.print(xValue);
-  Serial.print("\tY: ");
+  Serial.print(" | Y: ");
   Serial.print(yValue);
-  Serial.print("\tButton: ");
-  Serial.println(buttonState == LOW ? "Pressed" : "Not Pressed");
+  Serial.print(" | Button: ");
+  Serial.println(buttonState == 0 ? "Pressed" : "Not Pressed");
 
-  delay(100);  // Wait for a short period to stabilize the readings
+  delay(100);  // Short delay to stabilize readings
 }

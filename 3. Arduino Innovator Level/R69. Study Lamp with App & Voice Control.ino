@@ -21,13 +21,13 @@ void setup() {
 
 void loop() {
   if (BTSerial.available()) { // If data is received from the app
-    int command = BTSerial.parseInt(); // Read the received integer
+    int command = BTSerial.read(); // Read the received integer
 
     if (command == 1) {
-      analogWrite(ledPin, 255); // Turn LED ON (Full Brightness)
+      digitalWrite(ledPin, 1); // Turn LED ON (Full Brightness)
     } 
     else if (command == 0) {
-      analogWrite(ledPin, 0);  // Turn LED OFF
+      digitalWrite(ledPin, 0);  // Turn LED OFF
     } 
   }
 }

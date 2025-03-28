@@ -55,5 +55,5 @@ void loop() {
     Serial.println("Fan OFF - Temperature Normal.");
   }
 
-  delay(2000); // Wait before next reading
+  delay(1000); // Wait before next reading
 }

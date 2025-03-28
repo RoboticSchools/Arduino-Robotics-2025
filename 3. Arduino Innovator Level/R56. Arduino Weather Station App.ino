@@ -8,7 +8,6 @@ Components used:
 */
 
 #include <DHT.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <SoftwareSerial.h>
 
@@ -66,5 +65,5 @@ void loop() {
   lcd.print(humidity);
   lcd.print(" %");
 
-  delay(2000);  // Update readings every 2 seconds
+  delay(1000);  // Update readings every 1 seconds
 }

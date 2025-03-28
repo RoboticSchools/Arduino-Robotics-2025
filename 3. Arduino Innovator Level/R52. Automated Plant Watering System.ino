@@ -10,16 +10,13 @@ Components Used:
 
 #include <AFMotor.h>
 
-// Motor shield pin for water pump
-AF_DCMotor pump(1);  
-
-// Soil moisture sensor pin
-int moisturePin = A0;  
+AF_DCMotor pump(1);  // Water pump connected to Motor Shield
+int moisturePin = A0;  // Soil moisture sensor connected to Analog Pin A0
 
 void setup() {
-  pinMode(moisturePin, INPUT);  // Soil moisture sensor input
+  pinMode(moisturePin, INPUT);  // Set moisture sensor as input
   pump.setSpeed(150);           // Set pump speed
-  Serial.begin(9600);           // Serial monitor for moisture values
+  Serial.begin(9600);           // Initialize serial communication
 }
 
 void loop() {
@@ -27,11 +24,16 @@ void loop() {
   Serial.print("Soil Moisture: ");
   Serial.println(moistureValue);
 
-  if (moistureValue < 500) {
-    pump.run(FORWARD);  // Turn on pump if soil is dry
-    delay(3000);        // Pump for 3 seconds
-    pump.run(RELEASE);  // Stop pump
+  // Run pump until moisture level exceeds 500
+  while (moistureValue < 500) {
+    pump.run(FORWARD);  // Start pump
+    Serial.println("Pump ON");
+    delay(200);  // Short delay to avoid rapid sensor reads
+    moistureValue = analogRead(moisturePin);  // Read updated sensor value
   }
 
-  delay(5000);  // Wait before checking again
+  pump.run(RELEASE);  // Stop pump when moisture level is sufficient
+  Serial.println("Pump OFF");
+
+  delay(1000);  // Wait before next check
 }

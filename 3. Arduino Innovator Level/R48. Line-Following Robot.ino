@@ -37,21 +37,21 @@ void loop() {
   int leftValue = digitalRead(leftSensor);
 
   // If both sensors do not detect black line, move forward
-  if (rightValue == 0 && leftValue == 0) {
+  if (leftValue == 0 && rightValue == 0) {
     right_Front.run(FORWARD);
     right_Back.run(FORWARD);
     left_Front.run(FORWARD);
     left_Back.run(FORWARD);
   } 
   // If right sensor detects line, turn left
-  else if (rightValue == 1 && leftValue == 0) {
+  else if (leftValue == 0 && rightValue == 1) {
     right_Front.run(FORWARD);
     right_Back.run(FORWARD);
     left_Front.run(BACKWARD);
     left_Back.run(BACKWARD);
   } 
   // If left sensor detects line, turn right
-  else if (rightValue == 0 && leftValue == 1) {
+  else if (leftValue == 1 && rightValue == 0) {
     right_Front.run(BACKWARD);
     right_Back.run(BACKWARD);
     left_Front.run(FORWARD);

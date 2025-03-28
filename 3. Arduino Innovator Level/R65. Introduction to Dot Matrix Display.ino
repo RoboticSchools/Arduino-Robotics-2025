@@ -24,7 +24,7 @@ MD_Parola matrix = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 void setup() {
   matrix.begin();  // Initialize display
-  matrix.setIntensity(5); // Set brightness (0-15)
+  matrix.setIntensity(15); // Set brightness (0-15)
   matrix.displayClear();  // Clear display
 }
 

@@ -45,18 +45,21 @@ void loop() {
     receivedData = BTSerial.read();
     if (receivedData == '1') {
       pump.run(FORWARD);  // Turn on pump (app command)
-    } 
-    else if (receivedData == '0') {
-      pump.run(RELEASE);  // Turn off pump (app command)
     }
+      while(receivedData != '0');
+      pump.run(RELEASE);
   }
 
-  // Automatic watering based on soil moisture
-  if (moistureValue < 500) {
-    pump.run(FORWARD);  // Turn on pump if soil is dry
-    delay(3000);         // Pump for 3 seconds
-    pump.run(RELEASE);   // Stop pump
+  // Run pump until moisture level exceeds 500
+  while (moistureValue < 500) {
+    pump.run(FORWARD);  // Start pump
+    Serial.println("Pump ON");
+    delay(200);  // Short delay to avoid rapid sensor reads
+    moistureValue = analogRead(moisturePin);  // Read updated sensor value
   }
 
-  delay(5000);  // Wait before checking again
+  pump.run(RELEASE);  // Stop pump when moisture level is sufficient
+  Serial.println("Pump OFF");
+
+  delay(1000);  // Wait before next check
 }

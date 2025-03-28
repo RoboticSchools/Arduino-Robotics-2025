@@ -23,7 +23,7 @@ void setup() {
 void loop() {
   int irSensorValue = digitalRead(irSensorPin);  // Read the value from IR sensor
 
-  if (irSensorValue == 1) {
+  if (irSensorValue == 0) {
     // If IR sensor detects an object, turn on the water pump for 3 seconds
     waterPump.run(FORWARD);  // Activate water pump
     delay(3000);  // Keep pump on for 3 seconds
