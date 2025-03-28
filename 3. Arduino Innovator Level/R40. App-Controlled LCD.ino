@@ -15,13 +15,13 @@ LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address (0x27 or 0x3F), 16 columns, 2
 String receivedText = ""; // Store received text
 
 void setup() {
-  lcd.begin();
+  lcd.init();
   lcd.backlight();
   Serial.begin(9600); // Start Serial Communication (for Bluetooth or Serial Monitor)
 
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Waiting for text...");
+  lcd.print("Enter text:");
 }
 
 void loop() {

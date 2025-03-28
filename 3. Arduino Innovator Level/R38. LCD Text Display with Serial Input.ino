@@ -11,7 +11,7 @@ Components Used:
 LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address (0x27 or 0x3F), 16 columns, 2 rows
 
 void setup() {
-  lcd.begin();
+  lcd.init();
   lcd.backlight();
   Serial.begin(9600);
   lcd.setCursor(0, 0);

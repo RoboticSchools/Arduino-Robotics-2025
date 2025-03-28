@@ -15,7 +15,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2); // I2C address (0x27 or 0x3F), 16 columns, 2
 int buzzer = 8; // Buzzer connected to pin 8
 
 void setup() {
-  lcd.begin();       // Initialize the LCD
+  lcd.init();       // Initialize the LCD
   lcd.backlight();   // Turn on the backlight
   
   pinMode(buzzer, OUTPUT); // Set buzzer pin as output
