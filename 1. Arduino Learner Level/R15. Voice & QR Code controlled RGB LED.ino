@@ -24,7 +24,7 @@ void setup() {
 
 void loop() {
   if (BTSerial.available()) { // If data is received from the app
-    int command = BTSerial.parseInt(); // Read the received integer
+    int command = BTSerial.read(); // Read the received integer
 
     // Red Color
     if (command == 1) {
