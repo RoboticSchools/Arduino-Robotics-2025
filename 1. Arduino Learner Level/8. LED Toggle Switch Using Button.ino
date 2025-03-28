@@ -16,13 +16,21 @@ bool ledState = false; // LED state
 void setup() {
   pinMode(buttonPin, INPUT_PULLUP); // Set Button pin as input with internal pull-up resistor
   pinMode(ledPin, OUTPUT);          // Set LED pin as output
+  Serial.begin(9600);               // Initialize Serial Monitor at 9600 baud
 }
 
 void loop() {
-  if (digitalRead(buttonPin) == 0) { // If button is pressed
+  if (digitalRead(buttonPin) == LOW) { // If button is pressed
     delay(200); // Simple debounce
-    while (digitalRead(buttonPin) == 0); // Wait for button release
+    while (digitalRead(buttonPin) == LOW); // Wait for button release
     ledState = !ledState; // Toggle LED state
     digitalWrite(ledPin, ledState); // Update LED
+
+    // Print LED state to Serial Monitor
+    if (ledState) {
+      Serial.println("LED ON");
+    } else {
+      Serial.println("LED OFF");
+    }
   }
 }
