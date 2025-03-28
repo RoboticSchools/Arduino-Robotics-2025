@@ -23,7 +23,7 @@ void setup() {
 
 void loop() {
   if (digitalRead(buttonPin) == LOW) { // If button is pressed
-    delay(200); // Simple debounce
+    delay(100); // Simple debounce
     while (digitalRead(buttonPin) == LOW); // Wait for button release
     
     int redState = random(2);   // Random 0 or 1 for Red
