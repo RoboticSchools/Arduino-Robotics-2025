@@ -43,12 +43,8 @@ void loop() {
   if (distance < 30) {
     moveBackwards();  
     delay(500);  
-    stopMotors();  
-    delay(100); 
     turnRight();      
     delay(500);  
-    stopMotors();  
-    delay(100);
   } else {
     moveForward();    
   }
@@ -91,11 +87,4 @@ void turnRight() {
   rightBack.run(FORWARD);
   leftFront.run(BACKWARD);
   leftBack.run(BACKWARD);
-}
-
-void stopMotors() {
-  rightFront.run(RELEASE);  
-  rightBack.run(RELEASE); 
-  leftFront.run(RELEASE); 
-  leftBack.run(RELEASE); 
 }

@@ -1,8 +1,8 @@
 
 #include <LiquidCrystal_I2C.h>
 
-#define BUTTON1 7  // Button for Option A
-#define BUTTON2 6  // Button for Option B
+int button1 = 7;  // Button for Option A
+int button2 = 6;  // Button for Option B
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -12,15 +12,15 @@ int optionA, optionB;
 void setup() {
   lcd.init();
   lcd.backlight();
-  pinMode(BUTTON1, INPUT_PULLUP);
-  pinMode(BUTTON2, INPUT_PULLUP);
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
   randomSeed(analogRead(0));
   generateQuestion();  // Start with the first question
 }
 
 void loop() {
-  if (digitalRead(BUTTON1) == LOW) checkAnswer(optionA);
-  if (digitalRead(BUTTON2) == LOW) checkAnswer(optionB);
+  if (digitalRead(button1) == LOW) checkAnswer(optionA);
+  if (digitalRead(button2) == LOW) checkAnswer(optionB);
 }
 
 // Function: Generate a random addition question
