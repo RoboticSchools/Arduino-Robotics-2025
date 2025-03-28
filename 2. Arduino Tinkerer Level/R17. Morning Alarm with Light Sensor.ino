@@ -17,18 +17,23 @@ void setup() {
   pinMode(ldrPin, INPUT);    // Set LDR pin as input
   pinMode(buzzerPin, OUTPUT); // Set Buzzer pin as output
   pinMode(buttonPin, INPUT_PULLUP); // Set Button pin as input with internal pull-up
+  Serial.begin(9600); // Start Serial Monitor
 }
 
 void loop() {
   int ldrState = digitalRead(ldrPin); // Read LDR value
   int buttonState = digitalRead(buttonPin); // Read Button state
 
-  if (ldrState == 1) {  // If light is detected (Morning)
+  if (ldrState == 0) {  // If light is detected (Morning)
     digitalWrite(buzzerPin, HIGH); // Turn ON Buzzer (Alarm)
+    Serial.println("Morning Detected - Buzzer ON");
   }
 
   if (buttonState == 0) {  // If button is pressed
     digitalWrite(buzzerPin, LOW); // Turn OFF Buzzer (Stop Alarm)
-    while(1);
+    Serial.println("Button Pressed - Buzzer OFF");
+    while(1); // Stop execution until reset
   }
+
+  delay(100); // Small delay for readability
 }
