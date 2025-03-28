@@ -21,7 +21,7 @@ void setup() {
 
 void loop() {
   if (digitalRead(buttonPin) == LOW) { // If button is pressed
-    delay(200); // Simple debounce
+    delay(100); // Simple debounce
     while (digitalRead(buttonPin) == LOW); // Wait for button release
     ledState = !ledState; // Toggle LED state
     digitalWrite(ledPin, ledState); // Update LED
