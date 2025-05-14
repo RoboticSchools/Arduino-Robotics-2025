@@ -4,36 +4,48 @@ Components Used:
 - Sensor Shield
 - LDR (Light Dependent Resistor)
 - Buzzer
-- Push Button
+- Start Button (connected to Pin 5)
+- Stop Button (connected to Pin 6)
 - Breadboard
 - Jumper Wires
 */
 
-int ldrPin = 3;      // LDR connected to Pin 3 (Digital)
-int buzzerPin = 4;   // Buzzer connected to Pin 4
-int buttonPin = 5;   // Push Button connected to Pin 5
+int ldrPin = 3;         // LDR connected to Pin 3 (Digital)
+int buzzerPin = 4;      // Buzzer connected to Pin 4
+int startButtonPin = 5; // Start Button connected to Pin 5
+int stopButtonPin = 6;  // Stop Button connected to Pin 6
 
 void setup() {
-  pinMode(ldrPin, INPUT);    // Set LDR pin as input
-  pinMode(buzzerPin, OUTPUT); // Set Buzzer pin as output
-  pinMode(buttonPin, INPUT_PULLUP); // Set Button pin as input with internal pull-up
-  Serial.begin(9600); // Start Serial Monitor
+  pinMode(ldrPin, INPUT);                   // LDR input
+  pinMode(buzzerPin, OUTPUT);               // Buzzer output
+  pinMode(startButtonPin, INPUT_PULLUP);    // Start Button input
+  pinMode(stopButtonPin, INPUT_PULLUP);     // Stop Button input
+
+  Serial.begin(9600);
+  Serial.println("System Initialized. Waiting for START button...");
 }
 
 void loop() {
-  int ldrState = digitalRead(ldrPin); // Read LDR value
-  int buttonState = digitalRead(buttonPin); // Read Button state
+  // Wait until Start Button is pressed
+  while (digitalRead(startButtonPin) == HIGH);
+    // Do nothing until button is pressed (LOW = pressed)
+  Serial.println("Start button pressed. Waiting for morning light...");
 
-  if (ldrState == 0) {  // If light is detected (Morning)
-    digitalWrite(buzzerPin, HIGH); // Turn ON Buzzer (Alarm)
-    Serial.println("Morning Detected - Buzzer ON");
-  }
+  // Wait until light is detected (LDR goes LOW)
+  while (digitalRead(ldrPin) == HIGH);
+    // Do nothing until light is detected
+  Serial.println("Light detected! Morning has come.");
+  digitalWrite(buzzerPin, HIGH); // Turn ON buzzer
+  Serial.println("Buzzer ON - Alarm Activated.");
 
-  if (buttonState == 0) {  // If button is pressed
-    digitalWrite(buzzerPin, LOW); // Turn OFF Buzzer (Stop Alarm)
-    Serial.println("Button Pressed - Buzzer OFF");
-    while(1); // Stop execution until reset
-  }
+  // Wait until Stop Button is pressed
+  Serial.println("Waiting for STOP button...");
+  while (digitalRead(stopButtonPin) == HIGH);
+    // Do nothing until stop button is pressed
+  digitalWrite(buzzerPin, LOW); // Turn OFF buzzer
+  Serial.println("Stop button pressed. Buzzer OFF.");
 
-  delay(100); // Small delay for readability
+  // System will reset and wait again from start
+  Serial.println("System resetting. Waiting for next START...");
+  delay(1000); // small pause before looping again
 }
